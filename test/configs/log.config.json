@@ -1,0 +1,19 @@
+{
+  "keywordS": {
+    "exclude": [
+      "guanlizhan"
+    ],
+    "inclue": [
+      "轨道车",
+      "zhuatai"
+    ]
+  },
+  "levesl": [
+    "warn",
+    "info",
+    "verbose"
+  ],
+  "open": true,
+  "path": "/usr/bin",
+  "template": ""
+}
