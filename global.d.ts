@@ -1,3 +1,3 @@
 interface ImportMeta {
-  glob(pattern: string): string[]
+  glob: (pattern: string) => string[]
 }

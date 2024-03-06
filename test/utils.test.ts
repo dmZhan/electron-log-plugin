@@ -3,7 +3,7 @@ import { getElectronLogVersion, getOsVersion, getPackageDep, isLinux, isMacOs, i
 
 describe('utils', () => {
   it('getOsVersion', () => {
-    expect(getOsVersion()).toMatchInlineSnapshot(`"Windows NT 10.0.19044"`)
+    expect(getOsVersion()).toMatchInlineSnapshot(`"Windows NT 10.0.19045"`)
   })
 
   it('isWindows', () => {

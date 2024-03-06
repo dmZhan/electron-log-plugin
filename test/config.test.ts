@@ -149,8 +149,8 @@ describe('load config', () => {
       expect(generateValidFilePath(undefined, undefined, undefined))
         .toMatchInlineSnapshot(`
           [
-            "C:\\Users\\zhanqingjie\\AppData\\Roaming\\electron-log-plugin\\logs",
-            "electron-log-plugin",
+            "C:\\Users\\Administrator\\AppData\\Roaming\\@dmzj\\electron-log-plugin\\logs",
+            "@dmzj/electron-log-plugin",
             "log",
           ]
         `)
@@ -168,7 +168,7 @@ describe('load config', () => {
         .toMatchInlineSnapshot(`
           [
             "C:/use/lo",
-            "electron-log-plugin",
+            "@dmzj/electron-log-plugin",
             "log",
           ]
         `)
