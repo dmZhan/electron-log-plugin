@@ -4,7 +4,7 @@ export default defineBuildConfig({
   entries: [
     'src/index',
   ],
-  externals: ['electron-log', 'unconfig', 'electron'],
+  externals: ['electron-log', 'electron'],
   rollup: {
     inlineDependencies: true,
     emitCJS: true,

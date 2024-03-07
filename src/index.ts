@@ -5,10 +5,13 @@ import type {
   RendererLogger,
   Variables,
 } from 'electron-log'
+import log from 'electron-log'
 import type { LogOptions } from './type'
 import { normalizeConfig, resolveConfig } from './config'
 import { getElectronLogVersion } from './utils'
+import { isMain } from './is'
 
+let hasInit = false
 export async function unLogger(
   logger: MainLogger | RendererLogger | NodeLogger,
   { cwd = process.cwd() } = {},
@@ -49,3 +52,28 @@ export async function unLogger(
 export function defineConfig(config: Partial<LogOptions>) {
   return config
 }
+
+(async function initialize() {
+  // eslint-disable-next-line no-console
+  console.log('@dmzj/electron-log-plugin work')
+  if (isMain && !hasInit) {
+    const config = await normalizeConfig(await resolveConfig({ cwd: process.cwd() }))
+    // eslint-disable-next-line no-console
+    console.log(
+      'test',
+      process.cwd(),
+    )
+    if (config.size)
+      log.transports.file.maxSize = config.size
+
+    if (config.resolvePathFn)
+      log.transports.file.resolvePathFn = config.resolvePathFn
+
+    if (config.archiveLogFn)
+      log.transports.file.archiveLogFn = config.archiveLogFn
+
+    log.initialize()
+
+    hasInit = true
+  }
+})()

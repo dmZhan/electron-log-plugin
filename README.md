@@ -1,7 +1,5 @@
 # @dmzj/electron-log-plugin
 
-[![NPM version](https://img.shields.io/npm/v/@dmzj/electron-log-plugin?color=a1b858&label=)](https://www.npmjs.com/package/@dmzj/electron-log-plugin)
-
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![bundle][bundle-src]][bundle-href]
@@ -16,9 +14,9 @@ A plugin for electron-log
 
 <!-- Badges -->
 
-[npm-version-src]: https://img.shields.io/npm/v/@dmzj/electron-log-plugin?style=flat&colorA=080f12&colorB=1fa669
+[npm-version-src]: https://img.shields.io/npm/v/%40dmzj%2Felectron-log-plugin?style=flat&colorA=080f12&colorB=1fa669
 [npm-version-href]: https://npmjs.com/package/@dmzj/electron-log-plugin
-[npm-downloads-src]: https://img.shields.io/npm/dm/@dmzj/electron-log-plugin?style=flat&colorA=080f12&colorB=1fa669
+[npm-downloads-src]: https://img.shields.io/npm/dt/%40dmzj%2Felectron-log-plugin?style=flat&colorA=080f12&colorB=1fa669
 [npm-downloads-href]: https://npmjs.com/package/@dmzj/electron-log-plugin
 [bundle-src]: https://img.shields.io/bundlephobia/minzip/@dmzj/electron-log-plugin?style=flat&colorA=080f12&colorB=1fa669&label=minzip
 [bundle-href]: https://bundlephobia.com/result?p=electron-log-plugin
