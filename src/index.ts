@@ -8,18 +8,18 @@ import type { LogOptions } from './type'
 import { normalizeConfig, resolveConfig } from './config'
 import { getElectronLogVersion } from './utils'
 
-export async function unLogger(
+const log = async function (
   { cwd = process.cwd() } = {},
 ) {
-  const config = await normalizeConfig(await resolveConfig({ cwd }))
-
-  // eslint-disable-next-line no-console
-  console.log(`Now electron-log version is ${await getElectronLogVersion()}`)
-
   if (isRenderer)
     return RendererLog
 
   if (isMain) {
+    const config = await normalizeConfig(await resolveConfig({ cwd }))
+
+    // eslint-disable-next-line no-console
+    console.log(`Now electron-log version is ${await getElectronLogVersion()}`)
+
     MainLog.initialize()
 
     if (config.size)
@@ -35,6 +35,8 @@ export async function unLogger(
   }
   else { return NodeLog }
 }
+
+export default log
 
 export function defineConfig(config: Partial<LogOptions>) {
   return config
