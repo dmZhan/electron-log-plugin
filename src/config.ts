@@ -1,5 +1,5 @@
 import process from 'node:process'
-import { stat } from 'node:fs/promises'
+import fs from 'node:fs'
 import { loadConfig } from 'unconfig'
 import type { FileTransport } from 'electron-log'
 import type { LogOptions } from './type'
@@ -7,18 +7,18 @@ import { generateValidFilePath } from './logPath'
 import { isWindows } from './utils'
 import { findLatestFile } from './logPath/resolveFile'
 
-export async function normalizeConfig(options: Partial<LogOptions>) {
+export function normalizeConfig(options: Partial<LogOptions>) {
   const p = generateValidFilePath(options.path, options.fileExt, options.fileName)
   let resolvePathFn: FileTransport['resolvePathFn'] | null = null
   let archiveLogFn: FileTransport['archiveLogFn'] | null = null
 
   if (!options.resolvePathFn && options.path) {
     if (options.fragment && options.size && options.size > 0) {
-      const flf = await findLatestFile(p)
+      const flf = findLatestFile(p)
       let time = 1
 
       if (flf) {
-        const s = flf ? await stat(flf.join('')) : null
+        const s = flf ? fs.statSync(flf.join('')) : null
         if (s && s.size > options.size)
           time = flf[1] + 1
         else
@@ -72,4 +72,15 @@ export async function resolveConfig({ cwd = process.cwd() } = {}): Promise<Parti
   })
 
   return config || {}
+}
+
+export function resolveConfigSync({ cwd = process.cwd() } = {}) {
+  try {
+    const json = fs.readFileSync(`${cwd}/.logrc.json`, 'utf-8')
+
+    return json
+  }
+  catch {
+    return {}
+  }
 }

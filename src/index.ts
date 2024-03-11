@@ -5,20 +5,20 @@ import NodeLog from 'electron-log/node'
 
 import { isMain, isRenderer } from './is'
 import type { LogOptions } from './type'
-import { normalizeConfig, resolveConfig } from './config'
-import { getElectronLogVersion } from './utils'
+import { normalizeConfig, resolveConfigSync } from './config'
 
-const log = async function (
+// import { getElectronLogVersion } from './utils'
+
+const log = function (
   { cwd = process.cwd() } = {},
 ) {
   if (isRenderer)
     return RendererLog
 
   if (isMain) {
-    const config = await normalizeConfig(await resolveConfig({ cwd }))
+    const config = normalizeConfig(resolveConfigSync({ cwd }))
 
-    // eslint-disable-next-line no-console
-    console.log(`Now electron-log version is ${await getElectronLogVersion()}`)
+    // console.log(`Now electron-log version is ${await getElectronLogVersion()}`)
 
     MainLog.initialize()
 
