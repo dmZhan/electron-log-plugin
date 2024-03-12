@@ -1,42 +1,30 @@
 import process from 'node:process'
-import MainLog from 'electron-log/main'
-import RendererLog from 'electron-log/renderer'
-import NodeLog from 'electron-log/node'
-
-import { isMain, isRenderer } from './is'
-import type { LogOptions } from './type'
+import log from 'electron-log'
+import type { MainLogger, NodeLogger, RendererLogger } from 'electron-log'
 import { normalizeConfig, resolveConfigSync } from './config'
+import type { LogOptions } from './type'
 
-// import { getElectronLogVersion } from './utils'
+export default function (logger: MainLogger | RendererLogger | NodeLogger | undefined) {
+  if (logger && logger.variables.processType === 'main') {
+    const config = normalizeConfig(resolveConfigSync({ cwd: process.cwd() }));
 
-const log = function (
-  { cwd = process.cwd() } = {},
-) {
-  if (isRenderer)
-    return RendererLog
-
-  if (isMain) {
-    const config = normalizeConfig(resolveConfigSync({ cwd }))
-
-    // console.log(`Now electron-log version is ${await getElectronLogVersion()}`)
-
-    MainLog.initialize()
+    (logger as MainLogger).initialize()
 
     if (config.size)
-      MainLog.transports.file.maxSize = config.size
+      (logger as MainLogger).transports.file.maxSize = config.size
 
     if (config.resolvePathFn)
-      MainLog.transports.file.resolvePathFn = config.resolvePathFn
+      (logger as MainLogger).transports.file.resolvePathFn = config.resolvePathFn
 
     if (config.archiveLogFn)
-      MainLog.transports.file.archiveLogFn = config.archiveLogFn
+      (logger as MainLogger).transports.file.archiveLogFn = config.archiveLogFn
 
-    return MainLog
+    return logger
   }
-  else { return NodeLog }
+  else {
+    return log
+  }
 }
-
-export default log
 
 export function defineConfig(config: Partial<LogOptions>) {
   return config

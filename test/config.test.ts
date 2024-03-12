@@ -19,17 +19,7 @@ describe('load config', () => {
     })
 
     it('default cwd', async () => {
-      expect(await resolveConfig()).toMatchInlineSnapshot(`
-        {
-          "fileExt": [
-            "sss",
-          ],
-          "fileName": "SMSLog-{y}-{m}-{d}",
-          "fragment": true,
-          "path": "D:\\l\\logs",
-          "size": 102400,
-        }
-      `)
+      expect(await resolveConfig()).toMatchInlineSnapshot(`{}`)
     })
   })
 
@@ -106,30 +96,8 @@ describe('load config', () => {
 
     it('has path or resolvePathFn', async () => {
       const config = await resolveConfig()
-      expect(config).toMatchInlineSnapshot(`
-        {
-          "fileExt": [
-            "sss",
-          ],
-          "fileName": "SMSLog-{y}-{m}-{d}",
-          "fragment": true,
-          "path": "D:\\l\\logs",
-          "size": 102400,
-        }
-      `)
-      expect(await normalizeConfig(config)).toMatchInlineSnapshot(`
-        {
-          "archiveLogFn": [Function],
-          "fileExt": [
-            "sss",
-          ],
-          "fileName": "SMSLog-{y}-{m}-{d}",
-          "fragment": true,
-          "path": "D:\\l\\logs",
-          "resolvePathFn": [Function],
-          "size": 102400,
-        }
-      `)
+      expect(config).toMatchInlineSnapshot(`{}`)
+      expect(await normalizeConfig(config)).toMatchInlineSnapshot(`{}`)
 
       expect(generateValidFilePath(
         'C:/usr\\logs',

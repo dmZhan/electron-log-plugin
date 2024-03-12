@@ -78,7 +78,7 @@ export function resolveConfigSync({ cwd = process.cwd() } = {}) {
   try {
     const json = fs.readFileSync(`${cwd}/.logrc.json`, 'utf-8')
 
-    return json
+    return JSON.parse(json)
   }
   catch {
     return {}

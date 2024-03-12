@@ -1,0 +1,9 @@
+{
+  "fileExt": [
+    "sss"
+  ],
+  "fileName": "SMSLog-{y}-{m}-{d}",
+  "fragment": true,
+  "path": "D:\\l\\logs",
+  "size": 102400
+}
