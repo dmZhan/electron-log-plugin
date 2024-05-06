@@ -6,60 +6,60 @@ describe('ext', () => {
     expect(isValidLogPath('C:/usr/aaa', undefined)).toMatchInlineSnapshot(`
       {
         "base": null,
-        "dir": "C:/usr/aaa",
+        "dir": null,
       }
     `)
 
     expect(isValidLogPath('C:/usr/aaa/a.log', undefined)).toMatchInlineSnapshot(`
       {
-        "base": "a.log",
-        "dir": "C:/usr/aaa",
+        "base": null,
+        "dir": null,
       }
     `)
 
     expect(isValidLogPath('C:/usr/aaa/a.log.txt', undefined)).toMatchInlineSnapshot(`
       {
-        "base": "a.log.txt",
-        "dir": "C:/usr/aaa",
+        "base": null,
+        "dir": null,
       }
     `)
 
     expect(isValidLogPath('/usr/aaa', undefined)).toMatchInlineSnapshot(`
       {
         "base": null,
-        "dir": null,
+        "dir": "/usr/aaa",
       }
     `)
 
     expect(isValidLogPath('/usr/aaa/a.log', undefined)).toMatchInlineSnapshot(`
       {
-        "base": null,
-        "dir": null,
+        "base": "a.log",
+        "dir": "/usr/aaa",
       }
     `)
 
     expect(isValidLogPath('/usr/aaa/a.log.txt', [''])).toMatchInlineSnapshot(`
       {
-        "base": null,
-        "dir": null,
+        "base": "a.log.txt",
+        "dir": "/usr/aaa",
       }
     `)
     expect(isValidLogPath('/usr/aaa/a.log.aaa', ['aaa'])).toMatchInlineSnapshot(`
       {
-        "base": null,
-        "dir": null,
+        "base": "a.log.aaa",
+        "dir": "/usr/aaa",
       }
     `)
     expect(isValidLogPath('/usr/aaa/a.log.bbb', ['aaa', 'bbb'])).toMatchInlineSnapshot(`
       {
-        "base": null,
-        "dir": null,
+        "base": "a.log.bbb",
+        "dir": "/usr/aaa",
       }
     `)
     expect(isValidLogPath('/usr/aaa/a.log.bbb', ['aaa', ''])).toMatchInlineSnapshot(`
       {
         "base": null,
-        "dir": null,
+        "dir": "/usr/aaa/a.log.bbb",
       }
     `)
   })

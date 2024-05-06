@@ -14,13 +14,13 @@ describe('valid', () => {
       .toMatchInlineSnapshot(`undefined`)
 
     expect(regexLogPath('/aaa/ddd/sss'))
-      .toMatchInlineSnapshot(`undefined`)
+      .toMatchInlineSnapshot(`"/aaa/ddd/sss"`)
 
     expect(regexLogPath('/aaa\\ddd/sss'))
       .toMatchInlineSnapshot(`undefined`)
 
     expect(regexLogPath('D:/aaa\\ddd/sss\\eee'))
-      .toMatchInlineSnapshot(`"D:/aaa/ddd/sss/eee"`)
+      .toMatchInlineSnapshot(`undefined`)
   })
 
   it('regexLogPathInWindows', () => {

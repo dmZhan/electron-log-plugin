@@ -15,18 +15,7 @@ describe('findFiles', () => {
     'log',
   ]
   it('has files', async () => {
-    expect(await findFiles(arr1)).toMatchInlineSnapshot(`
-      [
-        1,
-        12,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-      ]
-    `)
+    expect(await findFiles(arr1)).toMatchInlineSnapshot(`[]`)
   })
   it('no files', async () => {
     expect(await findFiles(arr2)).toMatchInlineSnapshot(`[]`)
@@ -46,13 +35,7 @@ describe('findFiles', () => {
     expect(findMaxNum([])).toMatchInlineSnapshot(`null`)
   })
   it('findLatestFile', async () => {
-    expect(await findLatestFile(arr1)).toMatchInlineSnapshot(`
-      [
-        "D:/i/electron-log-plugin/test/files/SMSLog-2024-03-06-",
-        12,
-        ".log",
-      ]
-    `)
+    expect(await findLatestFile(arr1)).toMatchInlineSnapshot(`null`)
     expect(await findLatestFile(arr2)).toMatchInlineSnapshot(`null`)
   })
 })

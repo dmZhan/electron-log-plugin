@@ -1,6 +1,9 @@
 import os from 'node:os'
-import resolveJson from '@dmzj/resolve-package-json'
+import { getPackageInfo, isPackageListed } from '@dmzj/utils'
 
+export async function is(str: string) {
+  return await isPackageListed(str)
+}
 function getMacOsVersion() {
   const release = Number(os.release().split('.')[0])
   if (release <= 19)
@@ -37,16 +40,15 @@ export function isMacOs() {
  * Get package dependencies from your repo.
  * @returns Promise<{}>
  */
-export async function getPackageDep<T extends Record<string, any>>() {
-  const arr = await resolveJson<T>()
+// export async function getPackageDep() {
+//   const arr = await loadPackageJSON() || {}
 
-  return { ...arr.dependencies, ...arr.devDependencies }
-}
+//   return { ...arr.dependencies, ...arr.devDependencies }
+// }
 
 export async function getElectronLogVersion() {
-  const { 'electron-log': el }: { 'electron-log'?: string } = await getPackageDep()
-  // const root = cwd()
-  return el
+  const info = await getPackageInfo('electron-log')
+  return info?.version
 }
 /**
  * To parse electron-log version.

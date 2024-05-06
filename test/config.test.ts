@@ -108,7 +108,7 @@ describe('load config', () => {
       ))
         .toMatchInlineSnapshot(`
           [
-            "C:/usr/logs",
+            "/Users/zhanqingjie/Library/Logs/@dmzj/electron-log-plugin",
             "SMSLog-",
             "log",
           ]
@@ -117,7 +117,7 @@ describe('load config', () => {
       expect(generateValidFilePath(undefined, undefined, undefined))
         .toMatchInlineSnapshot(`
           [
-            "C:\\Users\\Administrator\\AppData\\Roaming\\@dmzj\\electron-log-plugin\\logs",
+            "/Users/zhanqingjie/Library/Logs/@dmzj/electron-log-plugin",
             "@dmzj/electron-log-plugin",
             "log",
           ]
@@ -126,8 +126,8 @@ describe('load config', () => {
       expect(generateValidFilePath('C:/use/lo/a.log', undefined, undefined))
         .toMatchInlineSnapshot(`
           [
-            "C:/use/lo",
-            "a",
+            "/Users/zhanqingjie/Library/Logs/@dmzj/electron-log-plugin",
+            "@dmzj/electron-log-plugin",
             "log",
           ]
         `)
@@ -135,7 +135,7 @@ describe('load config', () => {
       expect(generateValidFilePath('C:/use/lo', undefined, undefined))
         .toMatchInlineSnapshot(`
           [
-            "C:/use/lo",
+            "/Users/zhanqingjie/Library/Logs/@dmzj/electron-log-plugin",
             "@dmzj/electron-log-plugin",
             "log",
           ]

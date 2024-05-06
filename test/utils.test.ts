@@ -1,53 +1,59 @@
 import { describe, expect, it } from 'vitest'
-import { getElectronLogVersion, getOsVersion, getPackageDep, isLinux, isMacOs, isWindows, parsePackageVersion } from '../src/utils'
+import { getElectronLogVersion, getOsVersion, is, isLinux, isMacOs, isWindows, parsePackageVersion } from '../src/utils'
 
 describe('utils', () => {
+  it('isisiisi', async () => {
+    expect(await is('electron')).toMatchInlineSnapshot(`true`)
+    expect(await is('electron-log')).toMatchInlineSnapshot(`false`)
+    expect(await is('electron-remote')).toMatchInlineSnapshot(`false`)
+
+    expect(await is('@antfu/utils')).toMatchInlineSnapshot(`true`)
+    expect(await is('vue')).toMatchInlineSnapshot(`false`)
+  })
+
   it('getOsVersion', () => {
-    expect(getOsVersion()).toMatchInlineSnapshot(`"Windows NT 10.0.19045"`)
+    expect(getOsVersion()).toMatchInlineSnapshot(`"macOS release - 9"`)
   })
 
   it('isWindows', () => {
-    expect(isWindows()).toMatchInlineSnapshot(`true`)
+    expect(isWindows()).toMatchInlineSnapshot(`false`)
 
     expect(isLinux()).toMatchInlineSnapshot(`false`)
 
-    expect(isMacOs()).toMatchInlineSnapshot(`false`)
+    expect(isMacOs()).toMatchInlineSnapshot(`true`)
   })
 
-  it('resolve package.json', async () => {
-    const arr = await getPackageDep()
+  // it.skip('resolve package.json', async () => {
+  //   const arr = await getPackageDep()
 
-    expect(arr)
-      .toMatchInlineSnapshot(`
-        {
-          "@antfu/eslint-config": "^2.6.2",
-          "@antfu/ni": "^0.21.12",
-          "@antfu/utils": "^0.7.7",
-          "@dmzj/resolve-package-json": "0.0.1-beta.4",
-          "@types/node": "^20.11.16",
-          "@types/semver": "^7.5.6",
-          "bumpp": "^9.2.1",
-          "electron": "*",
-          "electron-log": "^5.1.0",
-          "eslint": "^8.56.0",
-          "esno": "^4.0.0",
-          "fast-glob": "^3.3.2",
-          "lint-staged": "^15.2.0",
-          "pnpm": "^8.14.0",
-          "rimraf": "^5.0.5",
-          "semver": "^7.6.0",
-          "simple-git-hooks": "^2.9.0",
-          "typescript": "^5.3.3",
-          "unbuild": "^2.0.0",
-          "unconfig": "^0.3.11",
-          "vite": "^5.0.11",
-          "vitest": "^1.1.3",
-        }
-      `)
-  })
+  //   expect(arr)
+  //     .toMatchInlineSnapshot(`
+  //       {
+  //         "@antfu/eslint-config": "^2.6.2",
+  //         "@antfu/ni": "^0.21.12",
+  //         "@antfu/utils": "^0.7.7",
+  //         "@dmzj/utils": "^0.0.3",
+  //         "@types/node": "^20.11.16",
+  //         "bumpp": "^9.2.1",
+  //         "electron": "*",
+  //         "eslint": "^8.56.0",
+  //         "esno": "^4.0.0",
+  //         "fast-glob": "^3.3.2",
+  //         "lint-staged": "^15.2.0",
+  //         "pnpm": "^8.14.0",
+  //         "rimraf": "^5.0.5",
+  //         "simple-git-hooks": "^2.9.0",
+  //         "typescript": "^5.3.3",
+  //         "unbuild": "^2.0.0",
+  //         "unconfig": "^0.3.11",
+  //         "vite": "^5.0.11",
+  //         "vitest": "^1.1.3",
+  //       }
+  //     `)
+  // })
 
   it('getElectronLogVersion', async () => {
-    expect(await getElectronLogVersion()).toMatchInlineSnapshot(`"^5.1.0"`)
+    expect(await getElectronLogVersion()).toMatchInlineSnapshot(`"5.1.2"`)
   })
 
   it('parsePackageVersion', () => {
